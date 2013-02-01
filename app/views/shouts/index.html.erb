@@ -1,13 +1,15 @@
 <h1>Shouts</h1>
 
-<%= form_for Shout.new do |f| %>
-	Content: <%= f.text_field :content %>
-	<%= f.submit %>
+<%- if user_signed_in? %>
+	<%= form_for [current_user, Shout.new] do |f| %>
+		Content: <%= f.text_field :content %>
+		<%= f.submit %>
+	<% end %>
 <% end %>
 
 <h2>List of shouts</h2>
 <ul>
-	<%- Shout.all.each do |shout| %>
+	<%- @shouts.each do |shout| %>
 		<li> <%= shout.content %> </li>
 	<% end %>
 </ul>

@@ -1,10 +1,17 @@
 class ShoutsController < ApplicationController
   def index
-  	@shouts = Shout.all
+  	if params[:user_id]
+		user = User.find(params[:user_id])
+	  	@shouts = user.shouts
+	else
+		@shouts = Shout.all
+	end
   end
 
   def create
-  	Shout.create(params[:shout])
-  	redirect_to shouts_path
+  	shout = Shout.new(params[:shout])
+  	shout.user = current_user
+  	shout.save!
+  	redirect_to user_shouts_path(current_user)
   end
 end

@@ -1,3 +1,4 @@
 class Shout < ActiveRecord::Base
-  attr_accessible :content, :user_id
+	belongs_to :user
+	attr_accessible :content, :user_id
 end
