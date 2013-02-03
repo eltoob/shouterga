@@ -1,7 +1,7 @@
 Shouter::Application.routes.draw do
   devise_for :users
 
-  resources :users do
+  resources :user do
     resources :shouts
   end
 
