@@ -44,7 +44,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Shouter</a>
+          <a class="brand" href="/">Shouter</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <%- if user_signed_in?%>
@@ -59,7 +59,7 @@
         </div>
       </div>
     </div>
-
+    <% if user_signed_in? || params[:action] != 'index' %>
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
@@ -81,10 +81,14 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2012</p>
+        <p>Built by @elietoubiana for General Assembly</p>
+        <p>Source code available <%= link_to "Here", "https://github.com/eltoob/shouterga" %></p>
       </footer>
 
     </div> <!-- /container -->
+    <% else %>
+      <%= render 'shared/homepage' %>
+    <% end %>
 
     <!-- Javascripts
     ================================================== -->
